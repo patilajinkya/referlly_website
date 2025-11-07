@@ -365,6 +365,51 @@ const navigationItems = [
   { label: "About Us", active: false },
 ];
 
+const HoneycombGrid = (): JSX.Element => {
+  const hexSize = 70;
+  const hexSpacing = hexSize * 1.5;
+
+  return (
+    <div className="w-full overflow-x-auto py-12">
+      <div className="flex justify-center">
+        <svg
+          width={hexSpacing * 6}
+          height={hexSpacing * 5}
+          viewBox={`0 0 ${hexSpacing * 6} ${hexSpacing * 5}`}
+          className="w-full max-w-4xl h-auto"
+        >
+          {companyLogos.map((logo, index) => {
+            const row = Math.floor(index / 6);
+            const col = index % 6;
+            const offsetRow = row % 2 === 1 ? hexSpacing / 2 : 0;
+            const x = col * hexSpacing + offsetRow;
+            const y = row * (hexSpacing * 0.75);
+
+            return (
+              <g key={`honeycomb-${index}`}>
+                <polygon
+                  points={`${x},${y - hexSize / 2} ${x + hexSize / 2},${y - hexSize / 4} ${x + hexSize / 2},${y + hexSize / 4} ${x},${y + hexSize / 2} ${x - hexSize / 2},${y + hexSize / 4} ${x - hexSize / 2},${y - hexSize / 4}`}
+                  fill="none"
+                  stroke="#c9ddff4c"
+                  strokeWidth="2"
+                />
+                <image
+                  href={logo.src}
+                  x={x - 25}
+                  y={y - 20}
+                  width="50"
+                  height="40"
+                  preserveAspectRatio="xMidYMid slice"
+                />
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </div>
+  );
+};
+
 export const Frame = (): JSX.Element => {
   return (
     <div className="bg-white w-full min-h-screen relative overflow-hidden">
@@ -372,28 +417,6 @@ export const Frame = (): JSX.Element => {
         <div className="absolute top-[15%] -left-32 bg-[#c9ddff4c] blur-[151.25px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
         <div className="absolute -bottom-32 -right-32 bg-[#c9ddff4c] blur-[151.25px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#ffdfc94c] blur-[180.45px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
-      </div>
-
-      <div className="absolute inset-0 pointer-events-none hidden lg:block overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] max-w-[1227px] h-auto">
-          {polygonShapes.map((polygon, index) => (
-            <img
-              key={`polygon-${index}`}
-              className={`absolute ${polygon.top} ${polygon.left} ${polygon.width} ${polygon.height} opacity-60`}
-              alt="Polygon"
-              src={polygon.src}
-            />
-          ))}
-
-          {companyLogos.map((logo, index) => (
-            <img
-              key={`logo-${index}`}
-              className={`absolute ${logo.top} ${logo.left} ${logo.width} ${logo.height} ${logo.objectFit || ""}`}
-              alt={logo.alt}
-              src={logo.src}
-            />
-          ))}
-        </div>
       </div>
 
       <div className="relative z-10">
@@ -426,7 +449,7 @@ export const Frame = (): JSX.Element => {
 
         <main className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           <div className="max-w-7xl mx-auto">
-            <div className="max-w-3xl">
+            <div className="max-w-3xl mb-12">
               <h1 className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-2xl sm:text-3xl md:text-4xl lg:text-[42px] tracking-[0] leading-tight mb-8 sm:mb-12 lg:mb-16">
                 <span className="font-bold text-[#0c2750] leading-tight">
                   Your Next Job is Just a Referral Away!{" "}
@@ -448,6 +471,8 @@ export const Frame = (): JSX.Element => {
                 </span>
               </p>
             </div>
+
+            <HoneycombGrid />
           </div>
         </main>
       </div>
