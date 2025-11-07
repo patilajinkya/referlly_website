@@ -367,78 +367,88 @@ const navigationItems = [
 
 export const Frame = (): JSX.Element => {
   return (
-    <div className="bg-white overflow-hidden w-full min-w-[1440px] min-h-[905px] relative">
-      <div className="absolute -top-44 left-[-17px] w-[1519px] h-[1194px]">
-        <div className="top-[272px] left-0 bg-[#c9ddff4c] blur-[151.25px] absolute w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
-        <div className="top-[709px] left-[958px] bg-[#c9ddff4c] blur-[151.25px] absolute w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
-        <div className="top-px left-[641px] bg-[#ffdfc94c] blur-[180.45px] absolute w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
+    <div className="bg-white overflow-x-hidden w-full min-h-screen relative">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[15%] left-0 bg-[#c9ddff4c] blur-[151.25px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
+        <div className="absolute bottom-0 right-0 bg-[#c9ddff4c] blur-[151.25px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#ffdfc94c] blur-[180.45px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
       </div>
 
-      <div className="absolute top-[158px] left-[213px] w-[1227px] h-[700px]">
-        {polygonShapes.map((polygon, index) => (
-          <img
-            key={`polygon-${index}`}
-            className={`absolute ${polygon.top} ${polygon.left} ${polygon.width} ${polygon.height}`}
-            alt="Polygon"
-            src={polygon.src}
-          />
-        ))}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden hidden lg:block">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] max-w-[1227px] h-[700px]">
+          {polygonShapes.map((polygon, index) => (
+            <img
+              key={`polygon-${index}`}
+              className={`absolute ${polygon.top} ${polygon.left} ${polygon.width} ${polygon.height} opacity-60`}
+              alt="Polygon"
+              src={polygon.src}
+            />
+          ))}
 
-        {companyLogos.map((logo, index) => (
-          <img
-            key={`logo-${index}`}
-            className={`absolute ${logo.top} ${logo.left} ${logo.width} ${logo.height} ${logo.objectFit || ""}`}
-            alt={logo.alt}
-            src={logo.src}
-          />
-        ))}
-      </div>
-
-      <header className="absolute top-8 left-[calc(50.00%_-_109px)] flex items-center gap-6 h-[42px]">
-        {navigationItems.map((item, index) => (
-          <Button
-            key={`nav-${index}`}
-            variant={item.active ? "default" : "ghost"}
-            className={`h-auto ${item.active ? "bg-white rounded-[5px] border border-solid border-[#c9ddff4c] shadow-[0px_4px_16px_#c9ddffb2] px-[22px] py-0.5" : "px-0 py-1"} [font-family:'Roboto',Helvetica] font-medium text-[#0c2750] ${item.active ? "text-2xl" : "text-[21px]"} ${item.active ? "leading-9" : "leading-[31.5px]"} whitespace-nowrap`}
-          >
-            {item.label}
-          </Button>
-        ))}
-      </header>
-
-      <div className="absolute top-6 left-[142px] flex items-center gap-4">
-        <img
-          className="w-11 h-[47px]"
-          alt="Referlly logo"
-          src="/referlly-logo-1.svg"
-        />
-        <div className="[font-family:'Sansation',Helvetica] font-bold text-[#005ba7] text-[42px] tracking-[0.84px] leading-[normal] whitespace-nowrap">
-          Referlly
+          {companyLogos.map((logo, index) => (
+            <img
+              key={`logo-${index}`}
+              className={`absolute ${logo.top} ${logo.left} ${logo.width} ${logo.height} ${logo.objectFit || ""}`}
+              alt={logo.alt}
+              src={logo.src}
+            />
+          ))}
         </div>
       </div>
 
-      <main className="absolute top-[199px] left-24 w-[726px]">
-        <h1 className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-[42px] tracking-[0] leading-[42px] mb-[97px]">
-          <span className="font-bold text-[#0c2750] leading-[58.8px]">
-            Your Next Job is Just a Referral Away!{" "}
-          </span>
-          <span className="font-bold text-[#005ba7] leading-[58.8px]">
-            And yep… it&apos;s free. Always will be
-          </span>
-        </h1>
+      <div className="relative z-10">
+        <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <img
+                className="w-9 h-10 sm:w-11 sm:h-[47px]"
+                alt="Referlly logo"
+                src="/referlly-logo-1.svg"
+              />
+              <div className="[font-family:'Sansation',Helvetica] font-bold text-[#005ba7] text-3xl sm:text-[42px] tracking-[0.84px] leading-normal">
+                Referlly
+              </div>
+            </div>
 
-        <p className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-2xl tracking-[0] leading-9">
-          <span className="text-[#6c6896]">Job hunting made smarter. </span>
-          <span className="font-semibold text-[#524f73]">Referlly</span>
-          <span className="text-[#6c6896]">
-            {" "}
-            brings you hidden jobs, Get Referrals and better opportunities—all
-            powered by free referrals.
-            <br />
-            One referral can change everything!
-          </span>
-        </p>
-      </main>
+            <nav className="flex items-center gap-4 sm:gap-6">
+              {navigationItems.map((item, index) => (
+                <Button
+                  key={`nav-${index}`}
+                  variant={item.active ? "default" : "ghost"}
+                  className={`h-auto ${item.active ? "bg-white rounded-[5px] border border-solid border-[#c9ddff4c] shadow-[0px_4px_16px_#c9ddffb2] px-4 sm:px-[22px] py-0.5" : "px-0 py-1"} [font-family:'Roboto',Helvetica] font-medium text-[#0c2750] ${item.active ? "text-xl sm:text-2xl" : "text-lg sm:text-[21px]"} ${item.active ? "leading-8 sm:leading-9" : "leading-7 sm:leading-[31.5px]"} whitespace-nowrap`}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </nav>
+          </div>
+        </header>
+
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+          <div className="max-w-4xl">
+            <h1 className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-2xl sm:text-3xl md:text-4xl lg:text-[42px] tracking-[0] leading-tight mb-12 sm:mb-16 lg:mb-[97px]">
+              <span className="font-bold text-[#0c2750] leading-tight">
+                Your Next Job is Just a Referral Away!{" "}
+              </span>
+              <span className="font-bold text-[#005ba7] leading-tight">
+                And yep… it&apos;s free. Always will be
+              </span>
+            </h1>
+
+            <p className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-lg sm:text-xl md:text-2xl tracking-[0] leading-relaxed">
+              <span className="text-[#6c6896]">Job hunting made smarter. </span>
+              <span className="font-semibold text-[#524f73]">Referlly</span>
+              <span className="text-[#6c6896]">
+                {" "}
+                brings you hidden jobs, Get Referrals and better opportunities—all
+                powered by free referrals.
+                <br />
+                One referral can change everything!
+              </span>
+            </p>
+          </div>
+        </main>
+      </div>
     </div>
   );
 };
