@@ -367,15 +367,15 @@ const navigationItems = [
 
 export const Frame = (): JSX.Element => {
   return (
-    <div className="bg-white overflow-x-hidden w-full min-h-screen relative">
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[15%] left-0 bg-[#c9ddff4c] blur-[151.25px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
-        <div className="absolute bottom-0 right-0 bg-[#c9ddff4c] blur-[151.25px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
+    <div className="bg-white w-full min-h-screen relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[15%] -left-32 bg-[#c9ddff4c] blur-[151.25px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
+        <div className="absolute -bottom-32 -right-32 bg-[#c9ddff4c] blur-[151.25px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#ffdfc94c] blur-[180.45px] w-[561px] h-[485px] rounded-[280.34px/242.32px]" />
       </div>
 
-      <div className="fixed inset-0 pointer-events-none overflow-hidden hidden lg:block">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] max-w-[1227px] h-[700px]">
+      <div className="absolute inset-0 pointer-events-none hidden lg:block overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] max-w-[1227px] h-auto">
           {polygonShapes.map((polygon, index) => (
             <img
               key={`polygon-${index}`}
@@ -397,8 +397,8 @@ export const Frame = (): JSX.Element => {
       </div>
 
       <div className="relative z-10">
-        <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          <div className="flex items-center justify-between flex-wrap gap-4">
+        <header className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3 sm:gap-4">
               <img
                 className="w-9 h-10 sm:w-11 sm:h-[47px]"
@@ -424,28 +424,30 @@ export const Frame = (): JSX.Element => {
           </div>
         </header>
 
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-          <div className="max-w-4xl">
-            <h1 className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-2xl sm:text-3xl md:text-4xl lg:text-[42px] tracking-[0] leading-tight mb-12 sm:mb-16 lg:mb-[97px]">
-              <span className="font-bold text-[#0c2750] leading-tight">
-                Your Next Job is Just a Referral Away!{" "}
-              </span>
-              <span className="font-bold text-[#005ba7] leading-tight">
-                And yep… it&apos;s free. Always will be
-              </span>
-            </h1>
+        <main className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+          <div className="max-w-7xl mx-auto">
+            <div className="max-w-3xl">
+              <h1 className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-2xl sm:text-3xl md:text-4xl lg:text-[42px] tracking-[0] leading-tight mb-8 sm:mb-12 lg:mb-16">
+                <span className="font-bold text-[#0c2750] leading-tight">
+                  Your Next Job is Just a Referral Away!{" "}
+                </span>
+                <span className="font-bold text-[#005ba7] leading-tight">
+                  And yep… it&apos;s free. Always will be
+                </span>
+              </h1>
 
-            <p className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-lg sm:text-xl md:text-2xl tracking-[0] leading-relaxed">
-              <span className="text-[#6c6896]">Job hunting made smarter. </span>
-              <span className="font-semibold text-[#524f73]">Referlly</span>
-              <span className="text-[#6c6896]">
-                {" "}
-                brings you hidden jobs, Get Referrals and better opportunities—all
-                powered by free referrals.
-                <br />
-                One referral can change everything!
-              </span>
-            </p>
+              <p className="[font-family:'Roboto',Helvetica] font-normal text-transparent text-lg sm:text-xl md:text-2xl tracking-[0] leading-relaxed">
+                <span className="text-[#6c6896]">Job hunting made smarter. </span>
+                <span className="font-semibold text-[#524f73]">Referlly</span>
+                <span className="text-[#6c6896]">
+                  {" "}
+                  brings you hidden jobs, Get Referrals and better opportunities—all
+                  powered by free referrals.
+                  <br />
+                  One referral can change everything!
+                </span>
+              </p>
+            </div>
           </div>
         </main>
       </div>
